@@ -1,0 +1,543 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  font-family: "Roboto Condensed";
+}
+
+
+
+/* Liquid Glass for Large Screens, White for Mobile */
+
+body {
+  padding-top: 100px;
+  font-family: "Roboto Condensed";
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.25); /* glass effect */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 14px 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 1100px;
+  margin: 20px auto;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 95%;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo img {
+  height: 55px;
+  margin-left: 10px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.08);
+  filter: brightness(0.95);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  position: relative;
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 1rem;
+  padding: 6px 0;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #00A39B;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s ease-in-out;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: #00A39B;
+  outline: none;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a:focus::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-links li a.active {
+  color: #00A39B;
+}
+
+.nav-links li a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.chat-now {
+  background: linear-gradient(to right, #00A39B, #146C6E, #1C2A39);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.4rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.chat-now:hover,
+.chat-now:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+  outline: none;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: 20px;
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.burger div {
+  width: 24px;
+  height: 2px;
+  background-color: #1f2937;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.burger.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.active div:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.overlay {
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+}
+
+/* Responsive (Mobile View) */
+@media (max-width: 768px) {
+  nav {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border-radius: 0;
+  }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1101;
+    padding: 6px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .burger div {
+    width: 26px;
+    height: 2.5px;
+    background: #1f2937;
+    border-radius: 2px;
+    transition: all 0.35s ease;
+  }
+
+  .burger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .burger.active div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 80%;
+    max-width: 360px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 100px 24px 24px;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease;
+    z-index: 1100;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    overflow-y: auto;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+    margin-bottom: 1.6rem;
+  }
+
+  .nav-links li a {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1f2937;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #00A39B;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links li a:hover::after,
+  .nav-links li a:focus::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a:focus {
+    color: #00A39B;
+  }
+
+  .chat-now {
+    display: none !important;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .overlay.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+    z-index: 1099;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+/* Full-screen hero section with background image */
+/* General Styles */
+body {
+      background: url(https://img.freepik.com/free-vector/colorful-gradient-background-modern-design_361591-4582.jpg?semt=ais_hybrid&w=740);
+
+    background-size: cover; /* Ensure the image covers the whole page */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center center; /* Center the image */
+    
+}
+.features-section {
+  
+background-color: #ffffffcc; /* cc is about 80% opacity */
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 1100px;
+    margin: 50px auto;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+
+.gradient-text {
+    font-size: 2.75rem;
+    font-weight: bold;
+    align-items: center;
+        background: linear-gradient(to right,  #00A39B, #146C6E, #1C2A39);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.services-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.service-box {
+    flex: 1 1 45%; /* Takes up 45% of the width to fit two boxes per row */
+    max-width: 45%;
+    height: 250px;
+    box-sizing: border-box;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.service-box img {
+    width: 70px;
+    height: 70px;
+    align-content: center;
+    margin-bottom: 1rem;
+}
+
+.service-box h3 {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-bottom: 1rem;
+}
+
+.service-box p {
+    font-size: 1rem;
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    .services-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-box {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gradient-text {
+        font-size: 2rem;
+    }
+
+    .service-box h3 {
+        font-size: 1.25rem;
+    }
+
+    .service-box p {
+        font-size: 0.875rem;
+    }
+}
+
+
+.clients-section {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 2rem 0;
+}
+
+.clients-section h1 {
+    color: #202040;
+    margin-bottom: 2rem;
+}
+
+.clients-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.client {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.client img {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+}
+
+.text-container {
+    width: 50%;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-left: -50%;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.text-container.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.client.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .client {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .client img {
+        width: 80%;
+        margin-bottom: 1rem;
+    }
+
+    .text-container {
+        width: 90%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 490px) {
+    .client img {
+        width: 100%;
+    }
+
+    .text-container {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .client {
+        padding: 1rem 0;
+    }
+}
+/* styles.css */
+
+.testimonials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.testimonial {
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 30px;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Slide up effect */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.testimonial img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.testimonial p {
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+/* Active class that triggers the animation */
+.testimonial.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
